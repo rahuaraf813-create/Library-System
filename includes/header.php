@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>Library Management System</title>
     <link rel="stylesheet" href="../assets/css/css/bootstrap.min.css">
+    <script src="../assets/js/all.min.js"></script>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        })();
+    </script>
 </head>
 <body class="bg-light">
 

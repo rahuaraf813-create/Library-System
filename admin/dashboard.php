@@ -1,8 +1,9 @@
 <?php
-//include '../includes/session_check.php';
+include '../includes/session_check.php';
 include '../config/db.php';
 include '../includes/header.php';
 
+$role = $_SESSION['role'];
 //taking details from database
 $book_count = $conn->query("SELECT book_id FROM book")->num_rows;
 $member_count = $conn->query("SELECT member_id FROM member")->num_rows;

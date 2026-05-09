@@ -12,7 +12,7 @@
         })();
     </script>
 </head>
-<body class="bg-light">
+<body>
 
 <nav class="navbar bg-dark navbar-dark fixed-top shadow">
   <div class="container-fluid">

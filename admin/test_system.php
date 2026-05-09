@@ -1,6 +1,7 @@
 <?php
 include '../config/db.php';
 include '../includes/header.php';
+include '../includes/session_check.php';
 ?>
 
 <div class="row justify-content-center mt-5">
@@ -48,7 +49,6 @@ include '../includes/header.php';
                 </div>
 
                 <div class="text-center mt-4">
-                    <a href="dashboard.php" class="btn btn-primary">Proceed to Dashboard</a>
                     <a href="../auth/login.php" class="btn btn-outline-secondary">Go to Login</a>
                 </div>
             </div>

@@ -1,12 +1,12 @@
 <?php
-include '../includes/session_check.php';
+//include '../includes/session_check.php';
 include '../config/db.php';
 include '../includes/header.php';
 
 //taking details from database
-$book_count = $conn->query("SELECT id FROM books")->num_rows;
-$member_count = $conn->query("SELECT id FROM members")->num_rows;
-$borrow_count = $conn->query("SELECT id FROM borrowings WHERE status='issued'")->num_rows;
+$book_count = $conn->query("SELECT book_id FROM book")->num_rows;
+$member_count = $conn->query("SELECT member_id FROM member")->num_rows;
+$borrow_count = $conn->query("SELECT borrow_id FROM bookborrower WHERE borrow_status='borrowed'")->num_rows;
 ?>
 
 <div class="container pb-5">

@@ -69,4 +69,58 @@
   </div>
 </nav>
 
-<div class="container mt-4">
+<style>
+    body { 
+        padding-top: 70px; 
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .form-check-label {
+        color: var(--bs-white) !important;
+        user-select: none;
+    }
+    .form-check-input:checked {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+    .card, .p-5.mb-4 {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+    }
+
+    [data-bs-theme="dark"] .nav-card {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color-translucent);
+    }
+
+    [data-bs-theme="dark"] .nav-card .card-header-icon {
+        background-color: var(--bs-tertiary-bg);
+    }
+
+    [data-bs-theme="dark"] .nav-card i {
+        color: var(--bs-secondary-color);
+    }
+
+    [data-bs-theme="dark"] .nav-card .btn {
+        background-color: var(--bs-secondary-bg);
+        border-color: var(--bs-border-color);
+        color: var(--bs-body-color);
+    }
+
+    [data-bs-theme="dark"] .nav-card .btn:hover {
+        background-color: var(--bs-tertiary-bg);
+    }
+
+    .nav-card .btn-warning {
+        color: var(--bs-emphasis-color); 
+    }
+
+    [data-bs-theme="dark"] .nav-card .btn-warning {
+        color: var(--bs-white);
+    }
+    
+    [data-bs-theme="dark"] .nav-card .btn-warning:hover {
+        color: var(--bs-white);
+    }
+
+
+</style>

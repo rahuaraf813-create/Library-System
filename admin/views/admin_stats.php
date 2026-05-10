@@ -3,7 +3,7 @@
         <div class="card shadow-sm border-0">
             <div class="card-body text-center">
                 <h6 class="text-muted small text-uppercase">System Staff</h6>
-                <h2 class="display-6">4</h2> </div>
+               <h2 class="display-6"><?= $user_count; ?></h2>
         </div>
     </div>
     <div class="col-md-4">

@@ -110,7 +110,11 @@ $available_books = $book_count - $active_borrows;
                 <div class="mb-3"><i class="fas fa-user-shield fa-3x text-dark"></i></div>
                 <h5>Staff Control</h5>
                 <p class="small text-secondary">Manage System Users</p>
+                 <?php if ($role === 'admin'): ?>
                 <a href="users.php" class="btn btn-dark btn-sm w-100">Open Portal</a>
+                <?php else: ?>
+    <button class="btn btn-secondary btn-sm w-100" onclick="alert('Access Denied. Admin only.')">Open Portal</button>
+<?php endif; ?>
             </div>
         </div>
     </div>

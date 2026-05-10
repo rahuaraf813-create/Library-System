@@ -262,3 +262,77 @@ include '../includes/header.php';
         </div>
     </div>
 </div>
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Staff Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small">User ID</label>
+                            <input type="text" id="edit_display_id" class="form-control" disabled>
+                            <input type="hidden" name="edit_user_id" id="edit_user_id">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small">Role</label>
+                            <select name="edit_role" id="edit_role" class="form-select">
+                                <option value="librarian">Librarian</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small">First Name</label>
+                            <input type="text" name="edit_first_name" id="edit_first_name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small">Last Name</label>
+                            <input type="text" name="edit_last_name" id="edit_last_name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small">Username</label>
+                            <input type="text" name="edit_username" id="edit_username" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small">Email Address</label>
+                            <input type="email" name="edit_email" id="edit_email" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small">New Password <span class="text-secondary">(leave blank to keep current)</span></label>
+                            <input type="password" name="edit_password" class="form-control" placeholder="Min 8 characters">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="update_user" class="btn btn-primary btn-sm">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function openEditModal(user_id, first_name, last_name, email, username, role) {
+    document.getElementById('edit_display_id').value  = user_id;
+    document.getElementById('edit_user_id').value     = user_id;
+    document.getElementById('edit_first_name').value  = first_name;
+    document.getElementById('edit_last_name').value   = last_name;
+    document.getElementById('edit_email').value       = email;
+    document.getElementById('edit_username').value    = username;
+    document.getElementById('edit_role').value        = role;
+    new bootstrap.Modal(document.getElementById('editUserModal')).show();
+}
+
+function confirmDelete(user_id) {
+    if (confirm('Are you sure you want to delete this user?')) {
+        document.getElementById('delete_user_id_input').value = user_id;
+        document.getElementById('deleteForm').submit();
+    }
+}
+</script>
+
+<?php include '../includes/footer.php'; ?>

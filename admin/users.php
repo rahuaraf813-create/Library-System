@@ -116,3 +116,23 @@ if (isset($_POST['update_user'])) {
         $check->close();
     }
 }
+if (isset($_POST['delete_user'])) {
+    $id = trim($_POST['delete_user_id']);
+    if (!empty($id)) {
+        $stmt = $conn->prepare("DELETE FROM user WHERE user_id = ?");
+        $stmt->bind_param("s", $id);
+        if ($stmt->execute()) {
+            $message = "User removed successfully.";
+            $message_type = "info";
+        } else {
+            $message = "Delete failed: " . $conn->error;
+            $message_type = "danger";
+        }
+        $stmt->close();
+    }
+}
+
+$result = $conn->query("SELECT * FROM user");
+
+include '../includes/header.php';
+?>

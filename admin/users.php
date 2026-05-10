@@ -210,3 +210,55 @@ include '../includes/header.php';
     <input type="hidden" name="delete_user" value="1">
     <input type="hidden" name="delete_user_id" id="delete_user_id_input">
 </form>
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Staff Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small">User ID (e.g. U001)</label>
+                            <input type="text" name="user_id" class="form-control" placeholder="U001" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small">First Name</label>
+                            <input type="text" name="first_name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small">Email Address</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small">Username</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small">Password (Min 8 chars)</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small">Role</label>
+                            <select name="role" class="form-select">
+                                <option value="librarian">Librarian</option>
+                                <option value="staff">Staff</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="register_user" class="btn btn-primary btn-sm">Save User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

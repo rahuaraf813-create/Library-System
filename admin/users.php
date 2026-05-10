@@ -136,3 +136,77 @@ $result = $conn->query("SELECT * FROM user");
 
 include '../includes/header.php';
 ?>
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-0">Staff Management</h2>
+            <p class="text-secondary small">Manage system administrators and librarians</p>
+        </div>
+        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            <i class="fas fa-user-plus me-1"></i> Add New User
+        </button>
+    </div>
+
+    <?php if ($message): ?>
+        <div class="alert alert-<?php echo $message_type; ?> py-2 small">
+            <?php echo htmlspecialchars($message); ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">User ID</th>
+                            <th>Full Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($row = $result->fetch_assoc()): ?>
+                        <tr>
+                            <td class="ps-4 fw-bold text-primary"><?php echo htmlspecialchars($row['user_id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['first_name'] . ' ' . $row['last_name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['username']); ?></td>
+                            <td><?php echo htmlspecialchars($row['email']); ?></td>
+                            <td>
+                                <span class="badge <?php echo ($row['role'] == 'admin') ? 'bg-danger' : 'bg-info'; ?> rounded-pill">
+                                    <?php echo ucfirst(htmlspecialchars($row['role'])); ?>
+                                </span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <button type="button" class="btn btn-outline-secondary btn-sm border-0 p-1"
+                                    onclick="openEditModal(
+                                        '<?php echo htmlspecialchars($row['user_id'],    ENT_QUOTES); ?>',
+                                        '<?php echo htmlspecialchars($row['first_name'], ENT_QUOTES); ?>',
+                                        '<?php echo htmlspecialchars($row['last_name'],  ENT_QUOTES); ?>',
+                                        '<?php echo htmlspecialchars($row['email'],      ENT_QUOTES); ?>',
+                                        '<?php echo htmlspecialchars($row['username'],   ENT_QUOTES); ?>',
+                                        '<?php echo htmlspecialchars($row['role'],       ENT_QUOTES); ?>'
+                                    )">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-outline-danger btn-sm border-0 p-1"
+                                    onclick="confirmDelete('<?php echo htmlspecialchars($row['user_id'], ENT_QUOTES); ?>')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="deleteForm" action="" method="POST" style="display:none;">
+    <input type="hidden" name="delete_user" value="1">
+    <input type="hidden" name="delete_user_id" id="delete_user_id_input">
+</form>

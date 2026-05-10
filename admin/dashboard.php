@@ -8,6 +8,7 @@ $role = $_SESSION['role'];
 $book_count = $conn->query("SELECT COUNT(*) as total FROM book")->fetch_assoc()['total'];
 $member_count = $conn->query("SELECT COUNT(*) as total FROM member")->fetch_assoc()['total'];
 $category_count = $conn->query("SELECT COUNT(*) as total FROM bookcategory")->fetch_assoc()['total'];
+$user_count   = $conn->query("SELECT COUNT(*) as total FROM user")->fetch_assoc()['total'];
 
 $active_borrows = $conn->query("SELECT COUNT(*) as total FROM bookborrower WHERE borrow_status='borrowed'")->fetch_assoc()['total'];
 $total_fines_result = $conn->query("SELECT SUM(fine_amount) as total FROM fine")->fetch_assoc()['total'];

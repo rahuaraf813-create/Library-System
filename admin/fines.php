@@ -75,10 +75,10 @@ include '../includes/header.php';
                         <td><?= $row['fine_date_modified'] ?></td>
                         <td>
                             <form method="POST" onsubmit="return confirm('Delete this fine?');">
-                                <input type="hidden" name="delete_fine_id" value="<?= $row['fine_id'] ?>">
-                                <button type="submit" name="delete_fine" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
+                           <input type="hidden" name="delete_fine_id" value="<?= htmlspecialchars($row['fine_id']) ?>">
+                          <button type="submit" name="delete_fine" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                          </td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>

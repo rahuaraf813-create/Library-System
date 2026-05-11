@@ -51,6 +51,13 @@ include '../includes/header.php';
         <h2>Fine Management</h2>
         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#fineModal">Issue Fine</button>
     </div>
+
+    <?php if ($message): ?>
+        <div class="alert alert-<?= $message_type ?> alert-dismissible fade show small" role="alert">
+            <?= $message ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
      
 
     <div class="card border-0 shadow-sm">
@@ -68,19 +75,29 @@ include '../includes/header.php';
                 </thead>
                 <tbody>
                     <?php while($row = $result->fetch_assoc()): ?>
-                    <td>
+                    <tr>
+                        <td><?= htmlspecialchars($row['fine_id']) ?></td>
+                        <td><?= htmlspecialchars($row['book_name']) ?></td>
+                        <td><?= htmlspecialchars($row['first_name']) ?></td>
+                        <td>LKR <?= number_format($row['fine_amount'], 2) ?></td>
+                        <td><?= $row['fine_date_modified'] ?></td>
+                        <td>
                             <form method="POST" onsubmit="return confirm('Delete this fine?');">
-                                <input type="hidden" name="delete_fine_id" value="<?= htmlspecialchars($row['fine_id']) ?>">
-                                <button type="submit" name="delete_fine" class="btn btn-danger btn-sm">Delete</button>
+                           <input type="hidden" name="delete_fine_id" value="<?= htmlspecialchars($row['fine_id']) ?>">
+                          <button type="submit" name="delete_fine" class="btn btn-danger btn-sm">Delete</button>
                             </form>
-                        </td>
+                          </td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
         </div>
     </div>
-</div> <div class="modal fade" id="fineModal" tabindex="-1" aria-hidden="true">
+</div>
+
+</div> 
+
+    <div class="modal fade" id="fineModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <form method="POST" class="modal-content">
             <div class="modal-header">
@@ -112,5 +129,6 @@ include '../includes/header.php';
         </form>
     </div>
 </div>
+        </div>
 
 <?php include '../includes/footer.php'; ?>

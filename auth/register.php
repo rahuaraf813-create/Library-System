@@ -17,7 +17,9 @@ if (isset($_POST['add_member'])) {
 
     if ($result->num_rows > 0) {
         $error = "Member ID or Email already exists.";
+        $stmt->close();
     } else {
+        $stmt->close();
         $insert_sql = "INSERT INTO member (member_id, first_name, last_name, birthday, email) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_sql);
         $stmt->bind_param("sssss", $member_id, $first_name, $last_name, $birthday, $email);

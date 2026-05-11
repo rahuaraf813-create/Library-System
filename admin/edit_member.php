@@ -1,20 +1,20 @@
 <?php
 
-include("../includes/db.php");
+include('../config/db.php');
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM members WHERE member_id='$id'";
-$result = mysqli_query($conn,$sql);
-
-$row = mysqli_fetch_assoc($result);
+$stmt = $conn->prepare("SELECT * FROM member WHERE member_id=?");
+$stmt->bind_param("s", $id);
+$stmt->execute();
+$row = $stmt->get_result()->fetch_assoc();
 
 $message = "";
 
 if(isset($_POST['update'])){
 
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    $firstname = $_POST['first_name'];
+    $lastname = $_POST['last_name'];
     $birthday = $_POST['birthday'];
     $email = $_POST['email'];
 
@@ -24,15 +24,10 @@ if(isset($_POST['update'])){
 
     else{
 
-        $update = "UPDATE members 
-                   SET firstname='$firstname',
-                       lastname='$lastname',
-                       birthday='$birthday',
-                       email='$email'
-                   WHERE member_id='$id'";
-
-        if(mysqli_query($conn,$update)){
-            header("Location:view_members.php");
+        $stmt = $conn->prepare("UPDATE member SET first_name=?, last_name=?, birthday=?, email=? WHERE member_id=?");
+        $stmt->bind_param("sssss", $firstname, $lastname, $birthday, $email, $id);
+        if($stmt->execute()){
+            header("Location: members.php");
         }
     }
 }
@@ -46,8 +41,7 @@ if(isset($_POST['update'])){
 
 <title>Edit Member</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="../assets/css/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -62,14 +56,14 @@ if(isset($_POST['update'])){
 
 <div class="mb-3">
 <label>Firstname</label>
-<input type="text" name="firstname" class="form-control"
-value="<?php echo $row['firstname']; ?>" required>
+<input type="text" name="first_name" class="form-control"
+value="<?php echo $row['first_name']; ?>" required>
 </div>
 
 <div class="mb-3">
 <label>Lastname</label>
-<input type="text" name="lastname" class="form-control"
-value="<?php echo $row['lastname']; ?>" required>
+<input type="text" name="last_name" class="form-control"
+value="<?php echo $row['last_name']; ?>" required>
 </div>
 
 <div class="mb-3">

@@ -1,13 +1,13 @@
 <?php
-include("../includes/db.php");
+include('../config/db.php');
 
 $message = "";
 
 if(isset($_POST['submit'])){
 
     $member_id = $_POST['member_id'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    $firstname = $_POST['first_name'];
+    $lastname = $_POST['last_name'];
     $birthday = $_POST['birthday'];
     $email = $_POST['email'];
 
@@ -21,10 +21,9 @@ if(isset($_POST['submit'])){
 
     else{
 
-        $sql = "INSERT INTO members(member_id, firstname, lastname, birthday, email)
-                VALUES('$member_id','$firstname','$lastname','$birthday','$email')";
-
-        if(mysqli_query($conn,$sql)){
+        $sql = "INSERT INTO member(member_id, first_name, last_name, birthday, email)
+           VALUES('$member_id','$firstname','$lastname','$birthday','$email')";
+        if(mysqli_query($conn,$sql)){     
             $message = "Member Added Successfully!";
         }
     }
@@ -38,8 +37,7 @@ if(isset($_POST['submit'])){
 
 <title>Add Member</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="../assets/css/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -59,12 +57,12 @@ if(isset($_POST['submit'])){
 
 <div class="mb-3">
 <label>Firstname</label>
-<input type="text" name="firstname" class="form-control" required>
+<input type="text" name="first_name" class="form-control" required>
 </div>
 
 <div class="mb-3">
 <label>Lastname</label>
-<input type="text" name="lastname" class="form-control" required>
+<input type="text" name="last_name" class="form-control" required>
 </div>
 
 <div class="mb-3">

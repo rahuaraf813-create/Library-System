@@ -6,9 +6,9 @@ if (isset($_POST['login'])) {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    $query = "SELECT * FROM user WHERE username = ? AND password = ?";
+    $query = "SELECT * FROM user WHERE username = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -26,8 +26,10 @@ if (isset($_POST['login'])) {
     } else {
         $error = "Invalid username or password!";
     }
-    $stmt->close();
+    } else {
+        $error="Invalid username or password!";
     }
+    $stmt->close();
 }
 ?>
 

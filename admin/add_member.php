@@ -78,6 +78,10 @@ if(isset($_POST['submit'])){
 <button type="submit" name="submit" class="btn btn-primary">
 Add Member
 </button>
+<a href="members.php" class="btn btn-secondary">
+            Back to Members
+        </a>
+    </div>
 
 </form>
 

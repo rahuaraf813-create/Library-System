@@ -46,7 +46,7 @@ if (isset($_POST['login'])) {
     <div class="login-card">
         <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-                <h3 class="text-center mb-4">LIB-SYS Login</h3>
+                <h3 class="text-center mb-4">LIBRARY-SYSTEM <br> Login</h3>
                 <?php if(isset($error)): ?>
                     <div class="alert alert-danger py-2 small"><?php echo $error; ?></div>
                 <?php endif; ?>

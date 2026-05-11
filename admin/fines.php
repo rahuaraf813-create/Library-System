@@ -51,6 +51,7 @@ include '../includes/header.php';
         <h2>Fine Management</h2>
         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#fineModal">Issue Fine</button>
     </div>
+     
 
     <div class="card border-0 shadow-sm">
         <div class="table-responsive">
@@ -86,5 +87,10 @@ include '../includes/header.php';
         </div>
     </div>
 </div>
+
+</div> 
+
+    <div class="modal fade" id="fineModal" tabindex="-1" aria-hidden="true">
+        </div>
 
 <?php include '../includes/footer.php'; ?>

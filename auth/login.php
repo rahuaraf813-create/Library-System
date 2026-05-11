@@ -3,8 +3,8 @@ session_start();
 include '../config/db.php';
 
 if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
     $query = "SELECT * FROM user WHERE username = ? AND password = ?";
     $stmt = $conn->prepare($query);

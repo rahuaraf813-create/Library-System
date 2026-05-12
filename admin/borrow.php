@@ -30,6 +30,18 @@ if (isset($_POST['add_borrow'])) {
             $message_type = "danger";
         }
     }
+ else {
+    $stmt = $conn->prepare("INSERT INTO bookborrower (borrow_id, book_id, member_id, borrow_status, borrower_date_modified) VALUES (?, ?, ?, ?, NOW())");
+    $stmt->bind_param("ssss", $borrow_id, $book_id, $member_id, $borrow_status); 
+    
+    if ($stmt->execute()) {
+            $message = "Borrow record added!";
+            $message_type = "success";
+        } else {
+            $message = "Error: " . $conn->error;
+            $message_type = "danger";
+        }
+    }
 }
 
 ?>

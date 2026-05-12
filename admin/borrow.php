@@ -1,7 +1,6 @@
 <?php
 include '../includes/session_check.php';
 include '../config/db.php';
-include '../includes/header.php';
 
 $message = '';
 $message_type = '';
@@ -30,21 +29,16 @@ if (isset($_POST['add_borrow'])) {
             $message_type = "danger";
         }
     }
- else {
-    $stmt = $conn->prepare("INSERT INTO bookborrower (borrow_id, book_id, member_id, borrow_status, borrower_date_modified) VALUES (?, ?, ?, ?, NOW())");
-    $stmt->bind_param("ssss", $borrow_id, $book_id, $member_id, $borrow_status); 
-    
-    if ($stmt->execute()) {
-            $message = "Borrow record added!";
-            $message_type = "success";
-        } else {
-            $message = "Error: " . $conn->error;
-            $message_type = "danger";
-        }
-    }
 }
-
+    
+ 
+$result = $conn->query("SELECT bookborrower.*, book.book_name, member.first_name 
+                        FROM bookborrower 
+                        JOIN book ON bookborrower.book_id = book.book_id 
+                        JOIN member ON bookborrower.member_id = member.member_id");
+include '../includes/header.php';
 ?>
+
 
 
 
@@ -54,6 +48,10 @@ if (isset($_POST['add_borrow'])) {
         <h2>Borrow Management</h2>
         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addModal">Add Borrow</button>
     </div>
+
+     <?php if ($message): ?>
+        <div class="alert alert-<?= $message_type ?> small"><?= $message ?></div>
+    <?php endif; ?>
 
     <div class="card border-0 shadow-sm">
         <div class="table-responsive">
@@ -69,6 +67,19 @@ if (isset($_POST['add_borrow'])) {
                     </tr>
                 </thead>
                 <tbody>
+                    <?php while($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['borrow_id']) ?></td>
+                        <td><?= htmlspecialchars($row['book_name']) ?></td>
+                        <td><?= htmlspecialchars($row['first_name']) ?></td>
+                        <td>
+                            <span class="badge bg-<?= $row['borrow_status'] == 'borrowed' ? 'warning' : 'success' ?>">
+                                <?= ucfirst($row['borrow_status']) ?>
+                            </span>
+                        </td>
+                        <td><?= $row['borrower_date_modified'] ?></td>
+                    </tr>
+                    <?php endwhile; ?>
                     </tbody>
             </table>
         </div>
@@ -77,11 +88,21 @@ if (isset($_POST['add_borrow'])) {
 
 <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <form method="POST" class="modal-content">
             <div class="modal-header"><h5>New Borrow Record</h5></div>
             <div class="modal-body">
+                <input type="text" name="borrow_id" class="form-control mb-2" placeholder="Borrow ID" required>
+                <input type="text" name="book_id" class="form-control mb-2" placeholder="Book ID" required>
+                <input type="text" name="member_id" class="form-control mb-2" placeholder="Member ID" required>
+                <select name="borrow_status" class="form-select">
+                    <option value="borrowed">Borrowed</option>
+                    <option value="returned">Returned</option>
+                </select>
                 </div>
-        </div>
+                <div class="modal-footer">
+                <button type="submit" name="add_borrow" class="btn btn-primary">Save Record</button>
+            </div>
+        </form>
     </div>
 </div>
 

@@ -131,7 +131,15 @@ if (isset($_POST['delete_user'])) {
         $stmt->close();
     }
 }
-
+if (isset($_POST['approve_user'])) {
+    $id = trim($_POST['approve_user_id']);
+    $stmt = $conn->prepare("UPDATE user SET is_approved = 1 WHERE user_id = ?");
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
+    $stmt->close();
+    $message = "User approved successfully.";
+    $message_type = "success";
+}
 $result = $conn->query("SELECT * FROM user");
 
 include '../includes/header.php';
@@ -196,6 +204,14 @@ include '../includes/header.php';
                                     onclick="confirmDelete('<?php echo htmlspecialchars($row['user_id'], ENT_QUOTES); ?>')">
                                     <i class="fas fa-trash"></i>
                                 </button>
+                                <?php if ($row['is_approved'] == 0): ?>
+<form method="POST" style="display:inline;">
+    <input type="hidden" name="approve_user_id" value="<?php echo htmlspecialchars($row['user_id'], ENT_QUOTES); ?>">
+    <button type="submit" name="approve_user" class="btn btn-outline-success btn-sm border-0 p-1" title="Approve">
+        <i class="fas fa-check"></i>
+    </button>
+</form>
+<?php endif; ?>
                             </td>
                         </tr>
                         <?php endwhile; ?>

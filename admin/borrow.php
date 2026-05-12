@@ -112,7 +112,8 @@ include '../includes/header.php';
 <div class="modal fade" id="addModal" tabindex="-1">
     <div class="modal-dialog">
         <form method="POST" class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">New Record</h5></div>
+            <div class="modal-header">
+            <h5 class="modal-title">New Record</h5></div>
             <div class="modal-body">
                 <input type="text" name="borrow_id" class="form-control mb-2" placeholder="ID" required>
                 <input type="text" name="book_id" class="form-control mb-2" placeholder="Book ID" required>
@@ -123,18 +124,8 @@ include '../includes/header.php';
                 </select>
             </div>
             <div class="modal-footer">
-                <button type="submit" name="add_borrow" class="btn btn-primary">Save Entry</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-
-
-                <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" name="add_borrow" class="btn btn-primary">Save Record</button>
+                <button type="submit" name="add_borrow" class="btn btn-primary">Save Entry</button>
             </div>
         </form>
     </div>

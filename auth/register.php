@@ -75,7 +75,7 @@ if (isset($_POST['register_user'])) {
     <div class="register-card">
         <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-                <h3 class="text-center mb-1">LIB-SYS</h3>
+                <h3 class="text-center mb-1">LIBRARY SYSTEM</h3>
                 <p class="text-center text-secondary small mb-4">Create a Staff Account</p>
 
                 <?php if ($message): ?>

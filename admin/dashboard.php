@@ -23,7 +23,7 @@ $available_books = $book_count - $active_borrows;
             <div class="col-md-7 border-end border-secondary border-opacity-25">
                 <h1 class="display-7 fw-bold text-body">&nbsp; Welcome, <?= ucfirst($role); ?>!</h1>
                 <p class="fs-5 text-muted mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Library Management System</p>
-                <p class="small text-secondary mt-2"><i class="fas fa-calendar-day me-2"></i> <?=date('l, jS F Y'); ?></p>
+                <p class="small text-secondary ms-2 mt-2"><br><i class="fas fa-calendar-day me-2"></i> <?=date('l, jS F Y'); ?></p>
             </div>
             <div class="col-md-5 ps-md-5">
                 <div class="row g-3">

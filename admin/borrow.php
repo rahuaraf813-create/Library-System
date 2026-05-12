@@ -105,6 +105,10 @@ include '../includes/header.php';
             </table>
         </div>
     </div>
+    <br>
+    <a href="dashboard.php" class="btn btn-secondary">
+            Back to Dashboard
+        </a>
 </div>
 
 

@@ -30,7 +30,20 @@ if (isset($_POST['add_borrow'])) {
         }
     }
 }
+    if (isset($_POST['delete_borrow'])) {
+    $id = $_POST['delete_borrow_id'];
+    $stmt = $conn->prepare("DELETE FROM bookborrower WHERE borrow_id = ?");
+    $stmt->bind_param("s", $id);
     
+    if ($stmt->execute()) {
+        $message = "Borrow record deleted successfully.";
+        $message_type = "info";
+    } else {
+        $message = "Error: Could not delete record.";
+        $message_type = "danger";
+    }
+}
+
  
 $result = $conn->query("SELECT bookborrower.*, book.book_name, member.first_name 
                         FROM bookborrower 
@@ -50,7 +63,10 @@ include '../includes/header.php';
     </div>
 
      <?php if ($message): ?>
-        <div class="alert alert-<?= $message_type ?> small"><?= $message ?></div>
+        <div class="alert alert-<?= $message_type ?> alert-dismissible fade show small" role="alert">
+            <?= $message ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     <?php endif; ?>
 
     <div class="card border-0 shadow-sm">
@@ -63,7 +79,7 @@ include '../includes/header.php';
                         <th>Member</th>
                         <th>Status</th>
                         <th>Date Modified</th>
-                        
+                        <th>Actions</th>                        
                     </tr>
                 </thead>
                 <tbody>
@@ -78,6 +94,12 @@ include '../includes/header.php';
                             </span>
                         </td>
                         <td><?= $row['borrower_date_modified'] ?></td>
+                        <td>
+                            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');" style="display:inline;">
+                                <input type="hidden" name="delete_borrow_id" value="<?= htmlspecialchars($row['borrow_id']) ?>">
+                                <button type="submit" name="delete_borrow" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     <?php endwhile; ?>
                     </tbody>
@@ -100,6 +122,7 @@ include '../includes/header.php';
                 </select>
                 </div>
                 <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" name="add_borrow" class="btn btn-primary">Save Record</button>
             </div>
         </form>

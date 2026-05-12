@@ -14,23 +14,26 @@ if (isset($_POST['login'])) {
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
-        if (password_verify($password,$user['password'])) {
-        
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-        $_SESSION['full_name'] = $user['first_name'] . ' ' . $user['last_name'];
-
-        header("Location: ../admin/dashboard.php");
-        exit();
+        if (password_verify($password, $user['password'])) {
+        if ($user['is_approved'] == 0) {
+            $error = "Your account is pending admin approval.";
+        } else {
+            $_SESSION['user_id']   = $user['user_id'];
+            $_SESSION['username']  = $user['username'];
+            $_SESSION['role']      = $user['role'];
+            $_SESSION['full_name'] = $user['first_name'] . ' ' . $user['last_name'];
+            header("Location: ../admin/dashboard.php");
+            exit();
+        }
     } else {
         $error = "Invalid username or password!";
     }
-    } else {
-        $error= "Invalid username or password!";
-    }
-    $stmt->close();
+} else {
+    $error = "Invalid username or password!";
 }
+$stmt->close();
+}
+
 ?>
 
 <!DOCTYPE html>

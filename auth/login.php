@@ -50,7 +50,7 @@ if (isset($_POST['login'])) {
         align-items: center;
         padding: 20px 0; 
     }
-    .register-card { width: 100%; max-width: 400px; padding: 15px; margin: auto; }
+    .login-card { width: 100%; max-width: 400px; padding: 15px; margin: auto; }
     .card { 
         -webkit-backdrop-filter: blur(6px); 
         backdrop-filter: blur(6px); 

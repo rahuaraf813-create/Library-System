@@ -130,6 +130,10 @@ include '../includes/header.php';
             </div>
         </div>
     </div>
+     <br>
+    <a href="dashboard.php" class="btn btn-secondary">
+            Back to Dashboard
+        </a>
 </div>   
 <form id="deleteForm" action="" method="POST" style="display:none;">
     <input type="hidden" name="delete_category" value="1">

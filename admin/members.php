@@ -64,6 +64,10 @@ include '../includes/header.php';
             </div>
         </div>
     </div>
+     <br>
+    <a href="dashboard.php" class="btn btn-secondary">
+            Back to Dashboard
+        </a>
 </div>
 
 <?php include '../includes/footer.php'; ?>

@@ -2,8 +2,8 @@
 include '../includes/session_check.php';
 include '../config/db.php';
 
-$msg = '';
-$msg_type = '';
+$message = '';
+$message_type = '';
 
 
 if (isset($_POST['add_borrow'])) {

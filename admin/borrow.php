@@ -43,7 +43,6 @@ include '../includes/header.php';
 
 
 
-
 <?php if ($message): ?>
     <div class="alert alert-<?= $message_type ?> alert-dismissible fade show" role="alert">
         <?= $message ?>
@@ -109,6 +108,26 @@ include '../includes/header.php';
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST" class="modal-content">
+            <div class="modal-header"><h5>New Borrow Record</h5></div>
+            <div class="modal-body">
+                <input type="text" name="borrow_id" class="form-control mb-2" placeholder="Borrow ID" required>
+                <input type="text" name="book_id" class="form-control mb-2" placeholder="Book ID" required>
+                <input type="text" name="member_id" class="form-control mb-2" placeholder="Member ID" required>
+                <select name="borrow_status" class="form-select">
+                    <option value="borrowed">Borrowed</option>
+                    <option value="returned">Returned</option>
+                </select>
+                </div>
+                <div class="modal-footer">
+    
+                <button type="submit" name="add_borrow" class="btn btn-primary">Save Record</button>
+            </div>
+        </form>
     </div>
 </div>
 

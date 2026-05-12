@@ -47,11 +47,10 @@ if (isset($_POST['add_borrow'])) {
     }
 }
 
-    $result = $conn->query("SELECT bookborrower.*, b.book_name, m.first_name 
-          FROM bookborrower
-          JOIN book b ON bookborrower.book_id = b.book_id 
-          JOIN member m ON bookborrower.member_id = m.member_id");
-$borrow_data = $result;
+    $result = $conn->query("SELECT bookborrower.*, book.book_name, member.first_name 
+                        FROM bookborrower 
+                        JOIN book ON bookborrower.book_id = book.book_id 
+                        JOIN member ON bookborrower.member_id = member.member_id");
 
 include '../includes/header.php';
 ?>

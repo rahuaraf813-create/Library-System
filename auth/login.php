@@ -27,7 +27,7 @@ if (isset($_POST['login'])) {
         $error = "Invalid username or password!";
     }
     } else {
-        $error="Invalid username or password!";
+        $error= "Invalid username or password!";
     }
     $stmt->close();
 }
@@ -40,9 +40,23 @@ if (isset($_POST['login'])) {
     <title>Library System - Login</title>
     <link rel="stylesheet" href="../assets/css/css/bootstrap.min.css">
     <style>
-        body { background: #f8f9fa; height: 100vh; display: flex; align-items: center; }
-        .login-card { width: 100%; max-width: 400px; padding: 15px; margin: auto; }
-    </style>
+    body { 
+        background-image: url('../bg.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 20px 0; 
+    }
+    .register-card { width: 100%; max-width: 400px; padding: 15px; margin: auto; }
+    .card { 
+        -webkit-backdrop-filter: blur(6px); 
+        backdrop-filter: blur(6px); 
+        background: rgba(255,255,255,0.85); 
+    }
+</style>
 </head>
 <body>
     <div class="login-card">
@@ -62,6 +76,11 @@ if (isset($_POST['login'])) {
                         <input type="password" name="password" class="form-control" required>
                     </div>
                     <button type="submit" name="login" class="btn btn-primary w-100 py-2">Sign In</button>
+                    <hr class="my-3 opacity-25">
+
+                    <p class="text-center small text-secondary mb-0">
+                        Don't have an account? <a href="register.php">Register here</a>
+                    </p>
                 </form>
             </div>
         </div>

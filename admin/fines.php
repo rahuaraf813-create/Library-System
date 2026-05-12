@@ -45,3 +45,89 @@ $result = $conn->query($query);
 
 include '../includes/header.php';
 ?>
+<div class="container py-4">
+    <div class="d-flex justify-content-between mb-4">
+        <h2>Fine Management</h2>
+        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#fineModal">Issue Fine</button>
+    </div>
+
+    <?php if ($message): ?>
+        <div class="alert alert-<?= $message_type ?> alert-dismissible fade show small" role="alert">
+            <?= $message ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+     
+
+    <div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Fine ID</th>
+                        <th>Book</th>
+                        <th>Member</th>
+                        <th>Amount</th>
+                        <th>Modified</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['fine_id']) ?></td>
+                        <td><?= htmlspecialchars($row['book_name']) ?></td>
+                        <td><?= htmlspecialchars($row['first_name']) ?></td>
+                        <td>LKR <?= number_format($row['fine_amount'], 2) ?></td>
+                        <td><?= $row['fine_date_modified'] ?></td>
+                        <td>
+                            <form method="POST" onsubmit="return confirm('Delete this fine?');">
+                           <input type="hidden" name="delete_fine_id" value="<?= htmlspecialchars($row['fine_id']) ?>">
+                          <button type="submit" name="delete_fine" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                          </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div> 
+
+    <div class="modal fade" id="fineModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Issue New Fine</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Fine ID</label>
+                    <input type="text" name="fine_id" class="form-control" placeholder="e.g. F001" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Book ID</label>
+                    <input type="text" name="book_id" class="form-control" placeholder="e.g. B001" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Member ID</label>
+                    <input type="text" name="member_id" class="form-control" placeholder="e.g. M001" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fine Amount (LKR)</label>
+                    <input type="number" name="fine_amount" class="form-control" step="0.01" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="add_fine" class="btn btn-danger">Save Fine</button>
+            </div>
+        </form>
+    </div>
+</div>
+        </div>
+
+<?php include '../includes/footer.php'; ?>

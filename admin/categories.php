@@ -130,4 +130,85 @@ include '../includes/header.php';
             </div>
         </div>
     </div>
+</div>   
+<form id="deleteForm" action="" method="POST" style="display:none;">
+    <input type="hidden" name="delete_category" value="1">
+    <input type="hidden" name="delete_category_id" id="delete_category_id_input">
+</form>
+
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label small">Category ID (e.g. C001)</label>
+                            <input type="text" name="category_id" class="form-control" placeholder="C001" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small">Category Name</label>
+                            <input type="text" name="category_name" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="add_category" class="btn btn-primary btn-sm">Save Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label small">Category ID</label>
+                            <input type="text" id="edit_display_id" class="form-control" disabled>
+                            <input type="hidden" name="edit_category_id" id="edit_category_id">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small">Category Name</label>
+                            <input type="text" name="edit_category_name" id="edit_category_name" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="update_category" class="btn btn-primary btn-sm">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function openEditModal(category_id, category_name) {
+    document.getElementById('edit_display_id').value    = category_id;
+    document.getElementById('edit_category_id').value  = category_id;
+    document.getElementById('edit_category_name').value = category_name;
+    new bootstrap.Modal(document.getElementById('editCategoryModal')).show();
+}
+
+function confirmDelete(category_id) {
+    if (confirm('Are you sure you want to delete this category?')) {
+        document.getElementById('delete_category_id_input').value = category_id;
+        document.getElementById('deleteForm').submit();
+    }
+}
+</script>
+
+<?php include '../includes/footer.php'; ?>

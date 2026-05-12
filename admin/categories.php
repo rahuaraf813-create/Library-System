@@ -82,3 +82,65 @@ $categories = $conn->query("SELECT * FROM bookcategory ORDER BY category_id");
 
 include '../includes/header.php';
 ?>
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-0">Books</h2>
+            <p class="text-secondary small">Manage library book inventory</p>
+        </div>
+        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addBookModal">
+            <i class="fas fa-plus me-1"></i> Add New Book
+        </button>
+    </div>
+
+    <?php if ($message): ?>
+        <div class="alert alert-<?php echo $message_type; ?> py-2 small">
+            <?php echo htmlspecialchars($message); ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">Book ID</th>
+                            <th>Book Name</th>
+                            <th>Category</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($row = $books->fetch_assoc()): ?>
+                        <tr>
+                            <td class="ps-4 fw-bold text-primary"><?php echo htmlspecialchars($row['book_id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['book_name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['category_Name']); ?></td>
+                            <td class="text-end pe-4">
+                                <button type="button" class="btn btn-outline-secondary btn-sm border-0 p-1"
+                                    onclick="openEditModal(
+                                        '<?php echo htmlspecialchars($row['book_id'], ENT_QUOTES); ?>',
+                                        '<?php echo htmlspecialchars($row['book_name'], ENT_QUOTES); ?>',
+                                        '<?php echo htmlspecialchars($row['category_id'], ENT_QUOTES); ?>'
+                                    )">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-danger btn-sm border-0 p-1"
+                                    onclick="confirmDelete('<?php echo htmlspecialchars($row['book_id'], ENT_QUOTES); ?>')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="deleteForm" action="" method="POST" style="display:none;">
+    <input type="hidden" name="delete_book" value="1">
+    <input type="hidden" name="delete_book_id" id="delete_book_id_input">
+</form>

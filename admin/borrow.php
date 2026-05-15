@@ -96,7 +96,7 @@ include '../includes/header.php';
                         <td>
                             <form method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');" style="display:inline;">
                                 <input type="hidden" name="delete_borrow_id" value="<?= htmlspecialchars($row['borrow_id']) ?>">
-                                <button type="submit" name="delete_borrow" class="btn btn-outline-danger btn-sm">Delete</button>
+                                <button type="submit" name="delete_borrow" class="btn btn-danger btn-sm">Delete</button>
                             </form>
                         </td>
                     </tr>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Library Management System</title>
     <link rel="stylesheet" href="../assets/css/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <script src="../assets/js/all.min.js"></script>
     <script>
         (function() {

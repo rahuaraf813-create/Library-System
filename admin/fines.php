@@ -12,6 +12,11 @@ if (isset($_POST['add_fine'])) {
     $member_id = trim($_POST['member_id']);
     $fine_amount = $_POST['fine_amount'];
 
+if ($fine_amount < 2 || $fine_amount > 500) {
+    $message = "Fine amount must be between 2 LKR and 500 LKR.";
+    $message_type = "danger";
+} else {
+
     try {
         $stmt = $conn->prepare("INSERT INTO fine (fine_id, book_id, member_id, fine_amount, fine_date_modified) VALUES (?, ?, ?, ?, NOW())");
         $stmt->bind_param("sssd", $fine_id, $book_id, $member_id, $fine_amount);
@@ -22,6 +27,7 @@ if (isset($_POST['add_fine'])) {
     } catch (mysqli_sql_exception $e) {
         $message = "Error: Invalid IDs provided.";
         $message_type = "danger";
+    }
     }
 }
 

@@ -19,8 +19,9 @@ $available_books = $book_count - $active_borrows;
 
 <div class="container-fluid mt-4">
     <div class="p-6 mb-4 bg-body-tertiary rounded-3 shadow-sm border border-secondary border-opacity-25">
+
         <div class="row align-items-center">
-            <div class="col-md-7 border-end border-secondary border-opacity-25">
+            <div class="col-md-7 border-end border-secondary border-opacity-25 pt-3">
                 <h1 class="display-7 fw-bold text-body">&nbsp; Welcome, <?= ucfirst($role); ?>!</h1>
                 <p class="fs-5 text-muted mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Library Management System</p>
                 <p class="small text-secondary ms-2 mt-2"><br><i class="fas fa-calendar-day me-2"></i> <?=date('l, jS F Y'); ?></p>
@@ -167,5 +168,37 @@ $available_books = $book_count - $active_borrows;
         </div>
     </div>
 </div>
+<style>
+.nav-card {
+    opacity: 0;
+    transform: scale(0.3) translateY(60px);
+    animation: cardThrow 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.nav-card:nth-child(1) { animation-delay: 0.05s; }
+.nav-card:nth-child(2) { animation-delay: 0.1s; }
+.nav-card:nth-child(3) { animation-delay: 0.15s; }
+.nav-card:nth-child(4) { animation-delay: 0.2s; }
+.nav-card:nth-child(5) { animation-delay: 0.25s; }
+.nav-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes cardThrow {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(60px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.05) translateY(-5px);
+    }
+    80% {
+        transform: scale(0.97) translateY(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+</style>
 
 <?php include '../includes/footer.php'; ?>

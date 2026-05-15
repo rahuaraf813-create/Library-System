@@ -21,7 +21,7 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand ms-3" href="dashboard.php">LIB-SYS ADMIN</a>
+      <a class="navbar-brand ms-3" href="dashboard.php">LIBRARY MANAGEMENT SYSTEM</a>
     </div>
 
     <div class="form-check form-switch me-2 d-flex align-items-center">
@@ -69,6 +69,35 @@
     </div>
   </div>
 </nav>
+<script>
+    const toggle = document.getElementById('darkModeToggle');
+    const icon = document.getElementById('themeIcon');
+    const label = document.getElementById('themeLabel');
+
+   
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        toggle.checked = true;
+        icon.className = 'fas fa-sun me-1';
+        label.textContent = 'Light Mode';
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+    }
+
+   
+    toggle.addEventListener('change', function () {
+        if (this.checked) {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            icon.className = 'fas fa-sun me-1';
+            label.textContent = 'Light Mode';
+        } else {
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            icon.className = 'fas fa-moon me-1';
+            label.textContent = 'Dark Mode';
+        }
+    });
+</script>
 
 <style>
     body { 

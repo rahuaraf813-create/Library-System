@@ -38,10 +38,11 @@ $stmt->close();
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <title>Library System - Login</title>
     <link rel="stylesheet" href="../assets/css/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
     body { 
         background-image: url('../bg.webp');
@@ -52,6 +53,8 @@ $stmt->close();
         display: flex;
         align-items: center;
         padding: 20px 0; 
+        -webkit-backdrop-filter: blur(3px); 
+        backdrop-filter: blur(3px); 
     }
     .login-card { width: 100%; max-width: 400px; padding: 15px; margin: auto; }
     .card { 
@@ -65,7 +68,7 @@ $stmt->close();
     <div class="login-card">
         <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-                <h3 class="text-center mb-4">LIBRARY-SYSTEM <br> Login</h3>
+                <h3 style="color:navy blue; font-weight: 700; letter-spacing: 1.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2), 0px 4px 6px rgba(0,0,0,0.1), 0 0 10px rgba(52,152,219,0.2);"class="text-center mb-4">LIBRARY-SYSTEM <br> Login</h3>
                 <?php if(isset($error)): ?>
                     <div class="alert alert-danger py-2 small"><?php echo $error; ?></div>
                 <?php endif; ?>

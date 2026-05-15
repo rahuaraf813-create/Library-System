@@ -302,6 +302,7 @@ include '../includes/header.php';
                             <select name="edit_role" id="edit_role" class="form-select">
                                 <option value="librarian">Librarian</option>
                                 <option value="admin">Admin</option>
+                                <option value="staff">Staff</option>
                             </select>
                         </div>
                         <div class="col-md-6">

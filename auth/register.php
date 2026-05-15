@@ -33,7 +33,7 @@ if (isset($_POST['register_user'])) {
             $message_type = "danger";
         } else {
             $hashed = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("INSERT INTO user (user_id, first_name, last_name, username, email, password, role, is_approved) VALUES (?, ?, ?, ?, ?, ?, 'librarian', 0)");
+            $stmt = $conn->prepare("INSERT INTO user (user_id, first_name, last_name, username, email, password, role, is_approved) VALUES (?, ?, ?, ?, ?, ?, 'Staff', 0)");
             $stmt->bind_param("ssssss", $user_id, $first_name, $last_name, $username, $email, $hashed);
 
             if ($stmt->execute()) {
